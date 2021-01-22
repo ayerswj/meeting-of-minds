@@ -28,4 +28,5 @@ A repository to help inspire learning and facilitate growth amongst peers.
 - [Atom](https://atom.io/)
 - [Markdown](https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf)
 - [Shell Intro](https://www2.karlin.mff.cuni.cz/~hron/NMNV532/ShellIntro.pdf)
+- [vi editor](https://www.washington.edu/computing/unix/vi.html)
 - [Crypto Udemy](https://www.udemy.com/course/coinmarketcap/learn/lecture/10519996#overview)
