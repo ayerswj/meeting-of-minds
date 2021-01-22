@@ -4,19 +4,29 @@
 # Packages
 import os
 import json
-import requests
+from requests import Request, Session
 from datetime import datetime
 from prettytable import PrettyTable
 from colorama import Fore, Back, Style
 
 # Constants
-convert = 'USD'
-listings_url = 'https://api.coinmarketcap.com/v2/listings/?convert=' + convert
-url_end = '?structure=array&convert=' + convert
+listings_url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+parameters = {
+    'start': '1',
+    'limit': '100',
+    'convert': 'USD'
+}
+headers = {
+  'Accepts': 'application/json',
+  'X-CMC_PRO_API_KEY': '',
+}
 
 # Call endpoint and store data
-request = requests.get(listings_url)
-results = request.json()
+session = Session()
+session.headers.update(headers)
+request = session.get(listings_url, params=parameters)
+print(request) # Testing Response code
+results = json.loads(request.text)
 data = results['data']
 
 # Create an array and store all data 1 by 1 in it
@@ -25,6 +35,9 @@ for currency in data:
     symbol = currency['symbol']
     url = currency['id']
     ticker_url_pairs[symbol] = url
+    print(url)
+    print(symbol)
+    print(ticker_url_pairs)
 
 # Print stuff
 print()
@@ -36,7 +49,7 @@ portfolio_value = 0.00
 last_updated = 0
 
 # Formate table values with a import package
-table = PrettyTable(['Asset', 'Amount Owned', convert + ' Value', 'Price', '1h', '24h', '7d'])
+table = PrettyTable(['Asset', 'Amount Owned', 'USD' + ' Value', 'Price', '1h', '24h', '7d'])
 
 # Open portfolio input
 with open('portfolio.txt') as inp:
@@ -45,12 +58,18 @@ with open('portfolio.txt') as inp:
         # Build URL to request
         ticker, amount = line.split()
         ticker = ticker.upper()
-        ticker_url = 'https://api.coinmarketcap.com/v2/ticker/' + str(ticker_url_pairs[ticker]) + '/' + url_end
+        ticker_url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/historical/'
 
         # Execute URL request
-        request = requests.get(ticker_url)
-        results = request.json()
+        parameters = {
+            'slug': ticker,
+            'convert': 'USD',
+        }
 
+        request = session.get(ticker_url, params=parameters)
+        results = json.loads(request.text)
+
+        print(results)
         # Store all data in variables to manipulate
         currency = results['data'][0]
         rank = currency['rank']
