@@ -29,4 +29,5 @@ A repository to help inspire learning and facilitate growth amongst peers.
 - [Markdown](https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf)
 - [Shell Intro](https://www2.karlin.mff.cuni.cz/~hron/NMNV532/ShellIntro.pdf)
 - [vi editor](https://www.washington.edu/computing/unix/vi.html)
+- [Coinmarketcap API](https://coinmarketcap.com/api/documentation/v1/#operation/getV1CryptocurrencyQuotesLatest)
 - [Crypto Udemy](https://www.udemy.com/course/coinmarketcap/learn/lecture/10519996#overview)
