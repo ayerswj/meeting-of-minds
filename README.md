@@ -19,9 +19,11 @@ A repository to help inspire learning and facilitate growth amongst peers.
 
 # Sources
 - [Python](https://www.python.org/)
+- [Python](https://www.python.org/doc/)
 - [Python Cheatsheet](https://github.com/gto76/python-cheatsheet)
 - [More Python Resources](https://github.com/stephenh67/python-resources-2019)
 - [Learn Python Projects](https://github.com/Learning-Python-Team)
+- [Python Basics](https://www.codecademy.com/learn/learn-python-3)
 - [Git](https://git-scm.com/)
 - [pip](https://pypi.org/project/pip/)
 - [PyPI](https://pypi.org/)
