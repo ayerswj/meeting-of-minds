@@ -10,17 +10,11 @@
 
 ## What are Generics?
 
-Generics provide type safety at compile time by allowing you to write code that works with different types while maintaining type checking. They were introduced in Java 5 to eliminate the need for casting and provide compile-time type safety.
+Generics provide type safety at compile time by allowing you to write code that works with different types while maintaining type checking. They were introduced in Java 5 to eliminate the need for casting and provide compile-time type checking.
 
-### Benefits of Generics
-- **Type Safety**: Catch type errors at compile time
-- **Eliminate Casting**: No need for explicit type casting
-- **Code Reusability**: Write once, use with multiple types
-- **Better Performance**: Avoid boxing/unboxing overhead
+## Basic Generic Classes
 
-## Generic Classes
-
-### Basic Generic Class
+### Simple Generic Class
 ```java
 public class Box<T> {
     private T content;
@@ -44,7 +38,7 @@ public class Box<T> {
 }
 
 // Usage examples
-public class GenericClassDemo {
+public class GenericsDemo {
     public static void main(String[] args) {
         // Integer box
         Box<Integer> integerBox = new Box<>(42);
@@ -58,7 +52,7 @@ public class GenericClassDemo {
         
         // Double box
         Box<Double> doubleBox = new Box<>(3.14159);
-        Double pi = doubleBox.getContent();
+        Double number = doubleBox.getContent();
         System.out.println(doubleBox);
         
         // This would cause a compile-time error:
@@ -100,7 +94,8 @@ public class Pair<K, V> {
     }
 }
 
-public class MultipleTypeParametersDemo {
+// Usage
+public class PairDemo {
     public static void main(String[] args) {
         // String-Integer pair
         Pair<String, Integer> nameAge = new Pair<>("John", 30);
@@ -110,23 +105,19 @@ public class MultipleTypeParametersDemo {
         Pair<Integer, Double> idScore = new Pair<>(101, 95.5);
         System.out.println(idScore);
         
-        // String-String pair
-        Pair<String, String> firstNameLastName = new Pair<>("John", "Doe");
-        System.out.println(firstNameLastName);
-        
         // Nested generics
-        Pair<String, Pair<Integer, Double>> complexPair = 
-            new Pair<>("Student", new Pair<>(101, 95.5));
-        System.out.println(complexPair);
+        Pair<String, Pair<Integer, Double>> student = 
+            new Pair<>("Alice", new Pair<>(102, 88.5));
+        System.out.println(student);
     }
 }
 ```
 
 ## Generic Methods
 
-### Basic Generic Method
+### Simple Generic Method
 ```java
-public class GenericMethodDemo {
+public class GenericMethods {
     
     // Generic method with type parameter T
     public static <T> void printArray(T[] array) {
@@ -149,115 +140,141 @@ public class GenericMethodDemo {
         System.out.println("First: " + first + ", Second: " + second);
     }
     
-    // Generic method that compares two objects
-    public static <T extends Comparable<T>> T findMax(T a, T b) {
-        return a.compareTo(b) > 0 ? a : b;
+    // Generic method that compares elements
+    public static <T extends Comparable<T>> T findMax(T[] array) {
+        if (array.length == 0) {
+            return null;
+        }
+        
+        T max = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i].compareTo(max) > 0) {
+                max = array[i];
+            }
+        }
+        return max;
     }
     
     public static void main(String[] args) {
-        // Integer array
+        // Test with different types
         Integer[] intArray = {1, 2, 3, 4, 5};
+        String[] stringArray = {"apple", "banana", "cherry"};
+        Double[] doubleArray = {1.1, 2.2, 3.3, 4.4};
+        
+        System.out.println("Integer array:");
         printArray(intArray);
         System.out.println("First element: " + getFirstElement(intArray));
+        System.out.println("Max element: " + findMax(intArray));
         
-        // String array
-        String[] stringArray = {"Hello", "World", "Generics"};
+        System.out.println("\nString array:");
         printArray(stringArray);
         System.out.println("First element: " + getFirstElement(stringArray));
+        System.out.println("Max element: " + findMax(stringArray));
         
-        // Double array
-        Double[] doubleArray = {1.1, 2.2, 3.3};
+        System.out.println("\nDouble array:");
         printArray(doubleArray);
+        System.out.println("First element: " + getFirstElement(doubleArray));
+        System.out.println("Max element: " + findMax(doubleArray));
         
-        // Multiple type parameters
+        // Test multiple type parameters
         printPair("Hello", 42);
         printPair(3.14, true);
-        
-        // Using comparable constraint
-        System.out.println("Max of 10 and 20: " + findMax(10, 20));
-        System.out.println("Max of 'apple' and 'banana': " + findMax("apple", "banana"));
     }
 }
 ```
 
-## Bounded Types
+## Bounded Type Parameters
 
-### Upper Bounded Wildcards
+### Upper Bounded Types
 ```java
-public class BoundedTypesDemo {
+public class BoundedTypes {
     
-    // Upper bounded wildcard - accepts Number or its subtypes
-    public static double sumOfNumbers(List<? extends Number> numbers) {
+    // Method that works with any Number type
+    public static <T extends Number> double sum(T[] numbers) {
         double sum = 0.0;
-        for (Number number : numbers) {
+        for (T number : numbers) {
             sum += number.doubleValue();
         }
         return sum;
     }
     
-    // Upper bounded type parameter
-    public static <T extends Number> T findMax(T a, T b) {
-        return a.doubleValue() > b.doubleValue() ? a : b;
+    // Method that works with Comparable types
+    public static <T extends Comparable<T>> T findMin(T[] array) {
+        if (array.length == 0) {
+            return null;
+        }
+        
+        T min = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i].compareTo(min) < 0) {
+                min = array[i];
+            }
+        }
+        return min;
     }
     
     // Multiple bounds
-    public static <T extends Number & Comparable<T>> T findMaxComparable(T a, T b) {
-        return a.compareTo(b) > 0 ? a : b;
+    public static <T extends Number & Comparable<T>> T findMaxNumber(T[] array) {
+        if (array.length == 0) {
+            return null;
+        }
+        
+        T max = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i].compareTo(max) > 0) {
+                max = array[i];
+            }
+        }
+        return max;
     }
     
     public static void main(String[] args) {
-        List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5);
-        List<Double> doubles = Arrays.asList(1.1, 2.2, 3.3, 4.4, 5.5);
-        List<Long> longs = Arrays.asList(1L, 2L, 3L, 4L, 5L);
+        Integer[] ints = {1, 5, 3, 9, 2};
+        Double[] doubles = {1.1, 5.5, 3.3, 9.9, 2.2};
         
-        System.out.println("Sum of integers: " + sumOfNumbers(integers));
-        System.out.println("Sum of doubles: " + sumOfNumbers(doubles));
-        System.out.println("Sum of longs: " + sumOfNumbers(longs));
+        System.out.println("Sum of integers: " + sum(ints));
+        System.out.println("Sum of doubles: " + sum(doubles));
         
-        // Using bounded type parameters
-        System.out.println("Max of 10 and 20: " + findMax(10, 20));
-        System.out.println("Max of 3.14 and 2.71: " + findMax(3.14, 2.71));
+        System.out.println("Min integer: " + findMin(ints));
+        System.out.println("Min double: " + findMin(doubles));
         
-        // Multiple bounds
-        System.out.println("Max comparable: " + findMaxComparable(100, 200));
+        System.out.println("Max number (integer): " + findMaxNumber(ints));
+        System.out.println("Max number (double): " + findMaxNumber(doubles));
     }
 }
 ```
 
-### Lower Bounded Wildcards
+### Lower Bounded Types
 ```java
-public class LowerBoundedWildcardsDemo {
+public class LowerBoundedTypes {
     
-    // Lower bounded wildcard - accepts Integer or its supertypes
+    // Method that accepts Integer or any supertype of Integer
     public static void addNumbers(List<? super Integer> list) {
         list.add(1);
         list.add(2);
         list.add(3);
     }
     
-    // Lower bounded wildcard with multiple elements
-    public static void addAllNumbers(List<? super Integer> target, List<Integer> source) {
-        target.addAll(source);
+    // Method that works with Number or any supertype
+    public static void addNumbers(List<? super Number> list) {
+        list.add(1);
+        list.add(2.5);
+        list.add(3L);
     }
     
     public static void main(String[] args) {
-        List<Number> numberList = new ArrayList<>();
         List<Object> objectList = new ArrayList<>();
+        List<Number> numberList = new ArrayList<>();
         List<Integer> integerList = new ArrayList<>();
         
-        // Adding numbers to different list types
-        addNumbers(numberList);
+        // These work because Object and Number are supertypes of Integer
         addNumbers(objectList);
+        addNumbers(numberList);
         addNumbers(integerList);
         
-        System.out.println("Number list: " + numberList);
         System.out.println("Object list: " + objectList);
+        System.out.println("Number list: " + numberList);
         System.out.println("Integer list: " + integerList);
-        
-        // Adding all numbers from source to target
-        List<Integer> source = Arrays.asList(4, 5, 6);
-        addAllNumbers(numberList, source);
-        System.out.println("After adding source: " + numberList);
     }
 }
 ```
@@ -266,9 +283,9 @@ public class LowerBoundedWildcardsDemo {
 
 ### Unbounded Wildcards
 ```java
-public class WildcardsDemo {
+public class Wildcards {
     
-    // Unbounded wildcard - accepts any type
+    // Method that works with any type
     public static void printList(List<?> list) {
         for (Object item : list) {
             System.out.print(item + " ");
@@ -276,78 +293,134 @@ public class WildcardsDemo {
         System.out.println();
     }
     
-    // Unbounded wildcard with size check
-    public static boolean isEmpty(List<?> list) {
-        return list == null || list.isEmpty();
-    }
-    
-    // Unbounded wildcard with size
-    public static int size(List<?> list) {
-        return list == null ? 0 : list.size();
+    // Method that works with any type but can't modify the list
+    public static void processList(List<?> list) {
+        // Can read from the list
+        for (Object item : list) {
+            System.out.println("Processing: " + item);
+        }
+        
+        // Cannot add to the list (compile-time error):
+        // list.add("new item"); // This would cause an error
     }
     
     public static void main(String[] args) {
-        List<String> stringList = Arrays.asList("Hello", "World");
         List<Integer> intList = Arrays.asList(1, 2, 3, 4, 5);
+        List<String> stringList = Arrays.asList("apple", "banana", "cherry");
         List<Double> doubleList = Arrays.asList(1.1, 2.2, 3.3);
         
-        printList(stringList);
+        System.out.println("Integer list:");
         printList(intList);
+        
+        System.out.println("String list:");
+        printList(stringList);
+        
+        System.out.println("Double list:");
         printList(doubleList);
         
-        System.out.println("String list empty: " + isEmpty(stringList));
-        System.out.println("Integer list size: " + size(intList));
+        // Process lists
+        processList(intList);
+        processList(stringList);
     }
 }
 ```
 
-### Wildcard Capture
+### Upper Bounded Wildcards
 ```java
-public class WildcardCaptureDemo {
+public class UpperBoundedWildcards {
     
-    // Wildcard capture helper method
-    public static void reverse(List<?> list) {
-        reverseHelper(list);
-    }
-    
-    // Helper method with type parameter
-    private static <T> void reverseHelper(List<T> list) {
-        for (int i = 0, j = list.size() - 1; i < j; i++, j--) {
-            T temp = list.get(i);
-            list.set(i, list.get(j));
-            list.set(j, temp);
+    // Method that works with any Number type
+    public static double sumOfList(List<? extends Number> list) {
+        double sum = 0.0;
+        for (Number number : list) {
+            sum += number.doubleValue();
         }
+        return sum;
     }
     
-    // Another example of wildcard capture
-    public static void swap(List<?> list, int i, int j) {
-        swapHelper(list, i, j);
-    }
-    
-    private static <T> void swapHelper(List<T> list, int i, int j) {
-        T temp = list.get(i);
-        list.set(i, list.get(j));
-        list.set(j, temp);
+    // Method that works with any Comparable type
+    public static <T extends Comparable<T>> T findMax(List<? extends T> list) {
+        if (list.isEmpty()) {
+            return null;
+        }
+        
+        T max = list.get(0);
+        for (T item : list) {
+            if (item.compareTo(max) > 0) {
+                max = item;
+            }
+        }
+        return max;
     }
     
     public static void main(String[] args) {
-        List<String> stringList = new ArrayList<>(Arrays.asList("A", "B", "C", "D"));
-        List<Integer> intList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+        List<Integer> intList = Arrays.asList(1, 5, 3, 9, 2);
+        List<Double> doubleList = Arrays.asList(1.1, 5.5, 3.3, 9.9, 2.2);
+        List<String> stringList = Arrays.asList("apple", "banana", "cherry");
         
-        System.out.println("Original string list: " + stringList);
-        reverse(stringList);
-        System.out.println("Reversed string list: " + stringList);
+        System.out.println("Sum of integers: " + sumOfList(intList));
+        System.out.println("Sum of doubles: " + sumOfList(doubleList));
         
-        System.out.println("Original int list: " + intList);
-        swap(intList, 0, 4);
-        System.out.println("After swap: " + intList);
+        System.out.println("Max integer: " + findMax(intList));
+        System.out.println("Max double: " + findMax(doubleList));
+        System.out.println("Max string: " + findMax(stringList));
+    }
+}
+```
+
+### Lower Bounded Wildcards
+```java
+public class LowerBoundedWildcards {
+    
+    // Method that can add Integer or any subtype to the list
+    public static void addIntegers(List<? super Integer> list) {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        
+        // Can also add subtypes of Integer
+        list.add(4); // Integer
+        // list.add(5L); // Long - compile error
+    }
+    
+    // Method that can add Number or any subtype to the list
+    public static void addNumbers(List<? super Number> list) {
+        list.add(1);      // Integer
+        list.add(2.5);    // Double
+        list.add(3L);     // Long
+        list.add(4.0f);   // Float
+    }
+    
+    public static void main(String[] args) {
+        List<Object> objectList = new ArrayList<>();
+        List<Number> numberList = new ArrayList<>();
+        List<Integer> integerList = new ArrayList<>();
+        
+        // Add integers to different list types
+        addIntegers(objectList);
+        addIntegers(numberList);
+        addIntegers(integerList);
+        
+        System.out.println("Object list: " + objectList);
+        System.out.println("Number list: " + numberList);
+        System.out.println("Integer list: " + integerList);
+        
+        // Add numbers to different list types
+        List<Object> objList = new ArrayList<>();
+        List<Number> numList = new ArrayList<>();
+        
+        addNumbers(objList);
+        addNumbers(numList);
+        
+        System.out.println("Object list with numbers: " + objList);
+        System.out.println("Number list: " + numList);
     }
 }
 ```
 
 ## Generic Interfaces
 
-### Basic Generic Interface
+### Simple Generic Interface
 ```java
 public interface Container<T> {
     void add(T item);
@@ -392,7 +465,8 @@ public class GenericContainer<T> implements Container<T> {
     }
 }
 
-public class GenericInterfaceDemo {
+// Usage
+public class ContainerDemo {
     public static void main(String[] args) {
         Container<String> stringContainer = new GenericContainer<>();
         stringContainer.add("Hello");
@@ -401,7 +475,7 @@ public class GenericInterfaceDemo {
         
         System.out.println("String container: " + stringContainer);
         System.out.println("Size: " + stringContainer.size());
-        System.out.println("First element: " + stringContainer.get(0));
+        System.out.println("First item: " + stringContainer.get(0));
         
         Container<Integer> intContainer = new GenericContainer<>();
         intContainer.add(1);
@@ -416,66 +490,110 @@ public class GenericInterfaceDemo {
 
 ### Bounded Generic Interface
 ```java
-public interface Comparable<T> {
-    int compareTo(T other);
+public interface ComparableContainer<T extends Comparable<T>> {
+    void add(T item);
+    T get(int index);
+    T getMax();
+    T getMin();
+    void sort();
+    int size();
 }
 
-public interface Sorter<T extends Comparable<T>> {
-    void sort(List<T> list);
-}
-
-public class BubbleSorter<T extends Comparable<T>> implements Sorter<T> {
+public class ComparableGenericContainer<T extends Comparable<T>> implements ComparableContainer<T> {
+    private List<T> items;
+    
+    public ComparableGenericContainer() {
+        this.items = new ArrayList<>();
+    }
+    
     @Override
-    public void sort(List<T> list) {
-        int n = list.size();
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
-                if (list.get(j).compareTo(list.get(j + 1)) > 0) {
-                    // Swap elements
-                    T temp = list.get(j);
-                    list.set(j, list.get(j + 1));
-                    list.set(j + 1, temp);
-                }
+    public void add(T item) {
+        items.add(item);
+    }
+    
+    @Override
+    public T get(int index) {
+        if (index >= 0 && index < items.size()) {
+            return items.get(index);
+        }
+        throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + items.size());
+    }
+    
+    @Override
+    public T getMax() {
+        if (items.isEmpty()) {
+            return null;
+        }
+        
+        T max = items.get(0);
+        for (T item : items) {
+            if (item.compareTo(max) > 0) {
+                max = item;
             }
         }
-    }
-}
-
-public class Student implements Comparable<Student> {
-    private String name;
-    private int grade;
-    
-    public Student(String name, int grade) {
-        this.name = name;
-        this.grade = grade;
+        return max;
     }
     
     @Override
-    public int compareTo(Student other) {
-        return Integer.compare(this.grade, other.grade);
+    public T getMin() {
+        if (items.isEmpty()) {
+            return null;
+        }
+        
+        T min = items.get(0);
+        for (T item : items) {
+            if (item.compareTo(min) < 0) {
+                min = item;
+            }
+        }
+        return min;
+    }
+    
+    @Override
+    public void sort() {
+        Collections.sort(items);
+    }
+    
+    @Override
+    public int size() {
+        return items.size();
     }
     
     @Override
     public String toString() {
-        return name + " (" + grade + ")";
+        return items.toString();
     }
 }
 
-public class BoundedInterfaceDemo {
+// Usage
+public class ComparableContainerDemo {
     public static void main(String[] args) {
-        List<Student> students = Arrays.asList(
-            new Student("Alice", 85),
-            new Student("Bob", 92),
-            new Student("Charlie", 78),
-            new Student("Diana", 95)
-        );
+        ComparableContainer<Integer> intContainer = new ComparableGenericContainer<>();
+        intContainer.add(5);
+        intContainer.add(2);
+        intContainer.add(8);
+        intContainer.add(1);
+        intContainer.add(9);
         
-        System.out.println("Original list: " + students);
+        System.out.println("Original: " + intContainer);
+        System.out.println("Max: " + intContainer.getMax());
+        System.out.println("Min: " + intContainer.getMin());
         
-        Sorter<Student> sorter = new BubbleSorter<>();
-        sorter.sort(students);
+        intContainer.sort();
+        System.out.println("Sorted: " + intContainer);
         
-        System.out.println("Sorted list: " + students);
+        ComparableContainer<String> stringContainer = new ComparableGenericContainer<>();
+        stringContainer.add("banana");
+        stringContainer.add("apple");
+        stringContainer.add("cherry");
+        stringContainer.add("date");
+        
+        System.out.println("Original: " + stringContainer);
+        System.out.println("Max: " + stringContainer.getMax());
+        System.out.println("Min: " + stringContainer.getMin());
+        
+        stringContainer.sort();
+        System.out.println("Sorted: " + stringContainer);
     }
 }
 ```
@@ -523,27 +641,28 @@ public class GenericStack<T> {
     }
 }
 
+// Usage
 public class StackDemo {
     public static void main(String[] args) {
-        GenericStack<String> stringStack = new GenericStack<>();
-        stringStack.push("First");
-        stringStack.push("Second");
-        stringStack.push("Third");
-        
-        System.out.println("Stack: " + stringStack);
-        System.out.println("Peek: " + stringStack.peek());
-        System.out.println("Pop: " + stringStack.pop());
-        System.out.println("Stack after pop: " + stringStack);
-        
         GenericStack<Integer> intStack = new GenericStack<>();
         intStack.push(1);
         intStack.push(2);
         intStack.push(3);
         
         System.out.println("Integer stack: " + intStack);
-        while (!intStack.isEmpty()) {
-            System.out.println("Popped: " + intStack.pop());
-        }
+        System.out.println("Peek: " + intStack.peek());
+        System.out.println("Pop: " + intStack.pop());
+        System.out.println("After pop: " + intStack);
+        
+        GenericStack<String> stringStack = new GenericStack<>();
+        stringStack.push("first");
+        stringStack.push("second");
+        stringStack.push("third");
+        
+        System.out.println("String stack: " + stringStack);
+        System.out.println("Peek: " + stringStack.peek());
+        System.out.println("Pop: " + stringStack.pop());
+        System.out.println("After pop: " + stringStack);
     }
 }
 ```
@@ -589,30 +708,113 @@ public class GenericQueue<T> {
     }
 }
 
+// Usage
 public class QueueDemo {
     public static void main(String[] args) {
         GenericQueue<String> stringQueue = new GenericQueue<>();
-        stringQueue.enqueue("First");
-        stringQueue.enqueue("Second");
-        stringQueue.enqueue("Third");
+        stringQueue.enqueue("first");
+        stringQueue.enqueue("second");
+        stringQueue.enqueue("third");
         
-        System.out.println("Queue: " + stringQueue);
+        System.out.println("String queue: " + stringQueue);
         System.out.println("Peek: " + stringQueue.peek());
         System.out.println("Dequeue: " + stringQueue.dequeue());
-        System.out.println("Queue after dequeue: " + stringQueue);
+        System.out.println("After dequeue: " + stringQueue);
         
         GenericQueue<Integer> intQueue = new GenericQueue<>();
-        intQueue.enqueue(1);
-        intQueue.enqueue(2);
-        intQueue.enqueue(3);
+        intQueue.enqueue(10);
+        intQueue.enqueue(20);
+        intQueue.enqueue(30);
         
         System.out.println("Integer queue: " + intQueue);
-        while (!intQueue.isEmpty()) {
-            System.out.println("Dequeued: " + intQueue.dequeue());
-        }
+        System.out.println("Peek: " + intQueue.peek());
+        System.out.println("Dequeue: " + intQueue.dequeue());
+        System.out.println("After dequeue: " + intQueue);
     }
 }
 ```
+
+## Type Erasure and Runtime Behavior
+
+### Understanding Type Erasure
+```java
+public class TypeErasureDemo {
+    
+    public static void main(String[] args) {
+        // At compile time, these are different types
+        List<String> stringList = new ArrayList<>();
+        List<Integer> intList = new ArrayList<>();
+        
+        // At runtime, both are just List (type erasure)
+        System.out.println("String list class: " + stringList.getClass());
+        System.out.println("Integer list class: " + intList.getClass());
+        System.out.println("Are they the same class? " + 
+            (stringList.getClass() == intList.getClass()));
+        
+        // This demonstrates type erasure
+        List rawList = new ArrayList();
+        rawList.add("String");
+        rawList.add(42);
+        rawList.add(3.14);
+        
+        System.out.println("Raw list: " + rawList);
+        
+        // Generic method with type erasure
+        printTypeInfo(stringList);
+        printTypeInfo(intList);
+    }
+    
+    // This method shows that type information is lost at runtime
+    public static void printTypeInfo(List<?> list) {
+        System.out.println("List type: " + list.getClass().getSimpleName());
+        System.out.println("Generic type: " + 
+            list.getClass().getGenericSuperclass());
+    }
+}
+```
+
+### Working with Type Erasure
+```java
+public class TypeErasureWorkarounds {
+    
+    // Using Class<T> to preserve type information
+    public static <T> T createInstance(Class<T> clazz) throws Exception {
+        return clazz.getDeclaredConstructor().newInstance();
+    }
+    
+    // Using reflection to get generic type information
+    public static void printGenericType(Class<?> clazz) {
+        Type genericSuperclass = clazz.getGenericSuperclass();
+        if (genericSuperclass instanceof ParameterizedType) {
+            ParameterizedType paramType = (ParameterizedType) genericSuperclass;
+            Type[] typeArguments = paramType.getActualTypeArguments();
+            System.out.println("Generic type arguments:");
+            for (Type typeArg : typeArguments) {
+                System.out.println("  " + typeArg.getTypeName());
+            }
+        }
+    }
+    
+    public static void main(String[] args) {
+        try {
+            // Create instances using Class<T>
+            String str = createInstance(String.class);
+            System.out.println("Created string: " + str);
+            
+            Integer num = createInstance(Integer.class);
+            System.out.println("Created integer: " + num);
+            
+        } catch (Exception e) {
+            System.err.println("Error creating instance: " + e.getMessage());
+        }
+        
+        // Print generic type information
+        printGenericType(ArrayList.class);
+    }
+}
+```
+
+## Real-World Generic Examples
 
 ### Generic Cache Implementation
 ```java
@@ -664,227 +866,156 @@ public class GenericCache<K, V> {
     }
 }
 
+// Usage
 public class CacheDemo {
     public static void main(String[] args) {
-        GenericCache<String, Integer> cache = new GenericCache<>(3);
+        // String-Integer cache
+        GenericCache<String, Integer> nameAgeCache = new GenericCache<>(3);
+        nameAgeCache.put("John", 30);
+        nameAgeCache.put("Jane", 25);
+        nameAgeCache.put("Bob", 35);
         
-        cache.put("A", 1);
-        cache.put("B", 2);
-        cache.put("C", 3);
+        System.out.println("Cache: " + nameAgeCache);
+        System.out.println("John's age: " + nameAgeCache.get("John"));
         
-        System.out.println("Cache: " + cache);
-        System.out.println("Get A: " + cache.get("A"));
+        // Adding more items will evict the oldest
+        nameAgeCache.put("Alice", 28);
+        System.out.println("Cache after adding Alice: " + nameAgeCache);
         
-        // This will evict the oldest entry (A)
-        cache.put("D", 4);
-        System.out.println("Cache after adding D: " + cache);
+        // Integer-String cache
+        GenericCache<Integer, String> idNameCache = new GenericCache<>(2);
+        idNameCache.put(1, "Product A");
+        idNameCache.put(2, "Product B");
         
-        // Access B to make it most recently used
-        cache.get("B");
-        cache.put("E", 5);
-        System.out.println("Cache after adding E: " + cache);
+        System.out.println("ID cache: " + idNameCache);
+        System.out.println("Product 1: " + idNameCache.get(1));
     }
 }
 ```
 
-## Type Erasure and Runtime Behavior
-
-### Understanding Type Erasure
+### Generic Builder Pattern
 ```java
-public class TypeErasureDemo {
+public class GenericBuilder<T> {
+    private T instance;
+    private Class<T> clazz;
     
-    public static void demonstrateTypeErasure() {
-        List<String> stringList = new ArrayList<>();
-        List<Integer> intList = new ArrayList<>();
-        
-        // At runtime, both lists have the same type due to type erasure
-        System.out.println("String list class: " + stringList.getClass());
-        System.out.println("Integer list class: " + intList.getClass());
-        System.out.println("Are they the same class? " + 
-            (stringList.getClass() == intList.getClass()));
-        
-        // Type erasure in action
-        List rawList = stringList; // Raw type assignment
-        rawList.add(42); // This compiles but is unsafe
-        
-        // This will cause ClassCastException at runtime
+    public GenericBuilder(Class<T> clazz) {
+        this.clazz = clazz;
         try {
-            String str = stringList.get(1); // Exception here
-        } catch (ClassCastException e) {
-            System.out.println("ClassCastException caught: " + e.getMessage());
+            this.instance = clazz.getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to create instance", e);
         }
     }
     
-    // Generic method with type erasure
-    public static <T> void addToList(List<T> list, T item) {
-        list.add(item);
+    public GenericBuilder<T> with(String fieldName, Object value) {
+        try {
+            Field field = clazz.getDeclaredField(fieldName);
+            field.setAccessible(true);
+            field.set(instance, value);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to set field: " + fieldName, e);
+        }
+        return this;
     }
     
-    // This method demonstrates that type information is lost at runtime
-    public static void demonstrateRuntimeLimitations() {
-        List<String> stringList = new ArrayList<>();
-        
-        // This works fine
-        addToList(stringList, "Hello");
-        
-        // At runtime, we can't check the generic type
-        System.out.println("List type at runtime: " + stringList.getClass());
-        
-        // We can't do this at runtime:
-        // if (stringList instanceof List<String>) // Compilation error
-    }
-    
-    public static void main(String[] args) {
-        demonstrateTypeErasure();
-        System.out.println();
-        demonstrateRuntimeLimitations();
-    }
-}
-```
-
-## Real-World Examples
-
-### Generic Repository Pattern
-```java
-public interface Repository<T, ID> {
-    T save(T entity);
-    Optional<T> findById(ID id);
-    List<T> findAll();
-    void deleteById(ID id);
-    boolean existsById(ID id);
-    long count();
-}
-
-public class InMemoryRepository<T, ID> implements Repository<T, ID> {
-    private Map<ID, T> storage;
-    private Function<T, ID> idExtractor;
-    
-    public InMemoryRepository(Function<T, ID> idExtractor) {
-        this.storage = new HashMap<>();
-        this.idExtractor = idExtractor;
-    }
-    
-    @Override
-    public T save(T entity) {
-        ID id = idExtractor.apply(entity);
-        storage.put(id, entity);
-        return entity;
-    }
-    
-    @Override
-    public Optional<T> findById(ID id) {
-        return Optional.ofNullable(storage.get(id));
-    }
-    
-    @Override
-    public List<T> findAll() {
-        return new ArrayList<>(storage.values());
-    }
-    
-    @Override
-    public void deleteById(ID id) {
-        storage.remove(id);
-    }
-    
-    @Override
-    public boolean existsById(ID id) {
-        return storage.containsKey(id);
-    }
-    
-    @Override
-    public long count() {
-        return storage.size();
+    public T build() {
+        return instance;
     }
 }
 
-public class User {
-    private Long id;
+// Example class to use with builder
+public class Person {
     private String name;
+    private int age;
     private String email;
     
-    public User(Long id, String name, String email) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-    }
+    public Person() {}
     
-    public Long getId() { return id; }
     public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    
+    public int getAge() { return age; }
+    public void setAge(int age) { this.age = age; }
+    
     public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
     
     @Override
     public String toString() {
-        return "User{id=" + id + ", name='" + name + "', email='" + email + "'}";
+        return String.format("Person{name='%s', age=%d, email='%s'}", name, age, email);
     }
 }
 
-public class RepositoryDemo {
+// Usage
+public class BuilderDemo {
     public static void main(String[] args) {
-        Repository<User, Long> userRepository = new InMemoryRepository<>(User::getId);
+        Person person = new GenericBuilder<>(Person.class)
+            .with("name", "John Doe")
+            .with("age", 30)
+            .with("email", "john@example.com")
+            .build();
         
-        // Save users
-        User user1 = new User(1L, "John Doe", "john@example.com");
-        User user2 = new User(2L, "Jane Smith", "jane@example.com");
-        
-        userRepository.save(user1);
-        userRepository.save(user2);
-        
-        // Find users
-        System.out.println("All users: " + userRepository.findAll());
-        System.out.println("User with ID 1: " + userRepository.findById(1L));
-        System.out.println("User count: " + userRepository.count());
-        
-        // Check existence
-        System.out.println("User 1 exists: " + userRepository.existsById(1L));
-        System.out.println("User 3 exists: " + userRepository.existsById(3L));
-        
-        // Delete user
-        userRepository.deleteById(1L);
-        System.out.println("After deletion: " + userRepository.findAll());
+        System.out.println("Built person: " + person);
     }
 }
 ```
 
 ## Exercises
 
-### Exercise 1: Generic Calculator
-Create a generic calculator that can perform operations on different numeric types (Integer, Double, etc.).
+### Exercise 1: Generic Data Structures
+Create generic implementations of:
+- Binary Tree
+- Linked List
+- Priority Queue
+- Hash Table
 
-### Exercise 2: Generic Tree Implementation
-Implement a generic binary tree with methods for insertion, traversal, and search.
+### Exercise 2: Generic Algorithms
+Implement generic versions of:
+- Sorting algorithms (bubble, merge, quick)
+- Search algorithms (linear, binary)
+- Filter and map operations
+- Reduce/fold operations
 
-### Exercise 3: Generic Sorting Utility
-Create a utility class with generic sorting methods that work with any comparable type.
+### Exercise 3: Generic Collections
+Build a generic collection framework with:
+- Custom List implementation
+- Custom Set implementation
+- Custom Map implementation
+- Iterator and Iterable support
 
-### Exercise 4: Generic Event System
-Build a generic event system that can handle different types of events and listeners.
+### Exercise 4: Advanced Generic Patterns
+Implement:
+- Generic factory pattern
+- Generic singleton pattern
+- Generic observer pattern
+- Generic command pattern
 
 ## Practice Files
-- `GenericClassDemo.java` - Basic generic class examples
-- `GenericMethodDemo.java` - Generic method examples
-- `BoundedTypesDemo.java` - Bounded type examples
+- `GenericsDemo.java` - Basic generics examples
+- `BoundedTypesDemo.java` - Bounded type parameters
 - `WildcardsDemo.java` - Wildcard examples
-- `GenericInterfaceDemo.java` - Generic interface examples
+- `GenericInterfacesDemo.java` - Generic interfaces
 - `AdvancedPatternsDemo.java` - Advanced generic patterns
 - `TypeErasureDemo.java` - Type erasure examples
-- `RepositoryDemo.java` - Real-world repository pattern
+- `RealWorldExamples.java` - Real-world generic applications
 
 ## Key Takeaways
 1. Generics provide compile-time type safety
-2. Use bounded types to restrict generic parameters
-3. Wildcards provide flexibility when you don't need type information
+2. Use bounded types to restrict type parameters
+3. Wildcards provide flexibility when working with collections
 4. Type erasure means generic information is lost at runtime
-5. Generics eliminate the need for casting
-6. Generic methods can be static or instance methods
-7. Use generic interfaces for reusable abstractions
-8. Advanced patterns like repositories benefit greatly from generics
+5. Generics eliminate the need for casting in most cases
+6. Generic methods can be more flexible than generic classes
+7. Use appropriate wildcards for read-only or write-only operations
+8. Consider type erasure when designing generic APIs
 
 ## Next Steps
 After completing this lesson, move on to:
 - Streams API and functional programming
-- Lambda expressions
-- Optional class
-- Date and Time API
+- Lambda expressions and method references
+- Optional and other functional interfaces
+- Advanced Java features
 
 ## Additional Resources
 - [Java Generics Tutorial](https://docs.oracle.com/javase/tutorial/java/generics/)
