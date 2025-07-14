@@ -83,9 +83,31 @@ This curriculum is structured in progressive modules, each building upon the pre
 
 ## 🔗 Additional Resources
 
+### Comprehensive Guides
+- [Git Quick Reference Guide](QUICK_REFERENCE.md) - Complete command reference
+- [Git Troubleshooting Guide](TROUBLESHOOTING.md) - Problem diagnosis and solutions
+- [Git Hooks Guide](GIT_HOOKS.md) - Automation and custom workflows
+- [Git Workflows Guide](GIT_WORKFLOWS.md) - Team collaboration patterns
+- [Git Internals Guide](GIT_INTERNALS.md) - Deep dive into Git's architecture
+- [Git Security Guide](GIT_SECURITY.md) - Security best practices
+- [Git Performance Guide](GIT_PERFORMANCE.md) - Optimization techniques
+
+### External Resources
 - [Official Git Documentation](https://git-scm.com/doc)
 - [GitHub Guides](https://guides.github.com/)
 - [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
+- [Interactive Git Tutorial](https://learngitbranching.js.org/)
+- [Conventional Commits](https://www.conventionalcommits.org/)
+- [Git Flow Documentation](https://nvie.com/posts/a-successful-git-branching-model/)
+- [GitHub Flow Guide](https://guides.github.com/introduction/flow/)
+- [Trunk-Based Development](https://trunkbaseddevelopment.com/)
+
+### Tools and Extensions
+- **Git GUI Tools**: GitHub Desktop, GitKraken, SourceTree
+- **IDE Integration**: VS Code Git, IntelliJ Git, Eclipse EGit
+- **Security Tools**: GitGuardian, TruffleHog, Snyk
+- **Performance Tools**: Git LFS, Sparse Checkout, Partial Clone
+- **Automation**: Husky, Pre-commit, GitHub Actions
 
 ---
 
