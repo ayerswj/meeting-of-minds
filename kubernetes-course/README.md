@@ -21,6 +21,16 @@ Welcome to the Kubernetes Mastery Coursework! This program is designed to take y
 13. [CI/CD with Kubernetes](#13-cicd-with-kubernetes)
 14. [Advanced Topics](#14-advanced-topics)
 15. [Capstone Project](#15-capstone-project)
+16. [Troubleshooting & Debugging Kubernetes](#16-troubleshooting--debugging-kubernetes)
+17. [Cost Optimization & Resource Management](#17-cost-optimization--resource-management)
+18. [Kubernetes Upgrades & Maintenance](#18-kubernetes-upgrades--maintenance)
+19. [Kubernetes in Production: Best Practices](#19-kubernetes-in-production-best-practices)
+20. [Multi-Tenancy & Policy Management](#20-multi-tenancy--policy-management)
+21. [Kubernetes Ecosystem Tools](#21-kubernetes-ecosystem-tools)
+22. [Serverless on Kubernetes](#22-serverless-on-kubernetes)
+23. [Edge & IoT with Kubernetes](#23-edge--iot-with-kubernetes)
+24. [Kubernetes for Data Workloads](#24-kubernetes-for-data-workloads)
+25. [Contributing to Kubernetes/Open Source](#25-contributing-to-kubernetesopen-source)
 
 ---
 
@@ -183,3 +193,8 @@ Welcome to the Kubernetes Mastery Coursework! This program is designed to take y
 ---
 
 Happy learning and mastering Kubernetes!
+
+## Quizzes, Case Studies, and Solutions
+- Each module includes a quiz to test your knowledge
+- Real-world case studies are provided for context
+- Solutions for hands-on labs are available in the `solutions/` directory
