@@ -1,6 +1,38 @@
 # AWS Course: From Beginner to Expert
 
-Welcome to the AWS Course! This guide will help you progress from a complete beginner to an AWS expert. The course is divided into levels, each with recommended topics, hands-on labs, and resources.
+## Curriculum Map
+
+```
+aws-course/
+├── beginner/
+│   ├── 01-intro-cloud-computing.md
+│   ├── 02-aws-overview.md
+│   ├── 03-core-services.md
+│   ├── 04-hands-on-labs.md
+│   └── resources.md
+├── intermediate/
+│   ├── 01-networking-security.md
+│   ├── 02-databases-storage.md
+│   ├── 03-automation-deployment.md
+│   ├── 04-hands-on-labs.md
+│   └── resources.md
+├── advanced/
+│   ├── 01-advanced-compute-networking.md
+│   ├── 02-security-identity.md
+│   ├── 03-big-data-analytics.md
+│   ├── 04-machine-learning.md
+│   ├── 05-hands-on-labs.md
+│   └── resources.md
+├── expert/
+│   ├── 01-multi-account-enterprise.md
+│   ├── 02-cost-optimization.md
+│   ├── 03-advanced-security-compliance.md
+│   ├── 04-real-world-projects.md
+│   └── resources.md
+└── README.md
+```
+
+Each section contains topic modules, hands-on labs, and a resource file with curated links and further reading.
 
 ---
 
