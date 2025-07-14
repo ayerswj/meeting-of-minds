@@ -228,16 +228,130 @@ Welcome to the .NET Course! This curriculum is designed to take you from a compl
 ---
 
 ### 5. Working with Collections and LINQ
-- Arrays, Lists, Dictionaries
-- Introduction to LINQ
+#### Lesson 1: Arrays and Lists
+- **Description:** Learn how to store and manipulate groups of data using arrays and lists.
+- **Key Points:**
+  - Declaring and initializing arrays: `int[] numbers = {1, 2, 3};`
+  - Using `List<T>`: `List<string> names = new List<string>();`
+  - Adding, removing, and accessing elements
+- **Example Code:**
+  ```csharp
+  int[] numbers = { 1, 2, 3, 4 };
+  foreach (int n in numbers)
+      Console.WriteLine(n);
+
+  List<string> fruits = new List<string> { "Apple", "Banana" };
+  fruits.Add("Cherry");
+  Console.WriteLine(fruits[1]); // Banana
+  ```
+- **Exercise:**
+  - Create a list of your three favorite movies and print them.
+  - Write a program that sums all numbers in an array.
+
+#### Lesson 2: Dictionaries
+- **Description:** Store key-value pairs using dictionaries.
+- **Key Points:**
+  - Declaring and using `Dictionary<TKey, TValue>`
+  - Adding, removing, and accessing values by key
+- **Example Code:**
+  ```csharp
+  Dictionary<string, int> ages = new Dictionary<string, int>();
+  ages["Alice"] = 30;
+  ages["Bob"] = 25;
+  foreach (var pair in ages)
+      Console.WriteLine($"{pair.Key}: {pair.Value}");
+  ```
+- **Exercise:**
+  - Create a dictionary mapping country names to capitals and print each pair.
+
+#### Lesson 3: Introduction to LINQ
+- **Description:** Use LINQ (Language Integrated Query) to query and manipulate collections.
+- **Key Points:**
+  - LINQ query syntax and method syntax
+  - Filtering, selecting, and ordering data
+- **Example Code:**
+  ```csharp
+  List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+  var evenNumbers = numbers.Where(n => n % 2 == 0).ToList();
+  foreach (var n in evenNumbers)
+      Console.WriteLine(n);
+  ```
+- **Exercise:**
+  - Given a list of numbers, use LINQ to find all numbers greater than 10.
+  - Use LINQ to select the names of all people over 18 from a list of `Person` objects.
 
 ---
 
 ## Intermediate Level
 
 ### 6. File I/O and Serialization
-- Reading and writing files
-- JSON and XML serialization
+#### Lesson 1: Reading and Writing Files
+- **Description:** Learn how to read from and write to files in C#.
+- **Key Points:**
+  - Using `System.IO.File` methods
+  - Reading all lines, writing all lines
+- **Example Code:**
+  ```csharp
+  string[] lines = File.ReadAllLines("input.txt");
+  foreach (var line in lines)
+      Console.WriteLine(line);
+
+  File.WriteAllText("output.txt", "Hello, file!");
+  ```
+- **Exercise:**
+  - Write a program that reads a file and prints each line with its line number.
+  - Write a program that appends a line to a file.
+
+#### Lesson 2: JSON Serialization
+- **Description:** Convert objects to and from JSON using `System.Text.Json`.
+- **Key Points:**
+  - Serializing objects: `JsonSerializer.Serialize(obj)`
+  - Deserializing objects: `JsonSerializer.Deserialize<T>(json)`
+- **Example Code:**
+  ```csharp
+  using System.Text.Json;
+
+  var person = new { Name = "Alice", Age = 30 };
+  string json = JsonSerializer.Serialize(person);
+  Console.WriteLine(json);
+
+  var deserialized = JsonSerializer.Deserialize<Dictionary<string, object>>(json);
+  Console.WriteLine(deserialized["Name"]);
+  ```
+- **Exercise:**
+  - Create a class `Book` and serialize a list of books to JSON.
+  - Read a JSON string and deserialize it into a C# object.
+
+#### Lesson 3: XML Serialization
+- **Description:** Work with XML data using `System.Xml.Serialization`.
+- **Key Points:**
+  - Serializing and deserializing objects to/from XML
+  - Using `XmlSerializer`
+- **Example Code:**
+  ```csharp
+  using System.Xml.Serialization;
+  using System.IO;
+
+  [Serializable]
+  public class Product
+  {
+      public string Name { get; set; }
+      public double Price { get; set; }
+  }
+
+  var product = new Product { Name = "Pen", Price = 1.99 };
+  var serializer = new XmlSerializer(typeof(Product));
+  using (var stream = new StringWriter())
+  {
+      serializer.Serialize(stream, product);
+      string xml = stream.ToString();
+      Console.WriteLine(xml);
+  }
+  ```
+- **Exercise:**
+  - Create a class `Student` and serialize/deserialize it to/from XML.
+
+---
 
 ### 7. Unit Testing and Debugging
 - Writing unit tests with xUnit/NUnit
