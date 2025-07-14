@@ -4,6 +4,41 @@ Welcome to the Docker Mastery Course! This curriculum is designed to take you fr
 
 ---
 
+## How to Use This Curriculum
+
+- Each module has its own folder under `lessons/` with:
+  - A lesson guide (`lesson.md`)
+  - Hands-on exercises (`exercises.md`)
+  - Code examples (`code/`)
+  - Quizzes (`quiz.md`)
+- Follow the modules in order, complete the exercises, and test your knowledge with quizzes.
+- Capstone project instructions are in the `capstone/` folder.
+
+---
+
+## Directory Structure
+
+```
+docker-course/
+│
+├── README.md
+├── lessons/
+│   ├── 01-introduction/
+│   │   ├── lesson.md
+│   │   ├── exercises.md
+│   │   ├── quiz.md
+│   │   └── code/
+│   ├── 02-installation/
+│   │   └── ...
+│   └── ...
+├── capstone/
+│   ├── instructions.md
+│   └── template/
+└── resources.md
+```
+
+---
+
 ## Table of Contents
 1. [Introduction to Docker](#1-introduction-to-docker)
 2. [Docker Installation & Setup](#2-docker-installation--setup)
