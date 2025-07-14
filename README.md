@@ -1,6 +1,6 @@
 # Meeting of Minds - Complete Programming Curriculum
 
-A comprehensive repository containing multiple programming curricula including Python and Java, designed to take you from complete beginner to advanced programmer through hands-on projects and progressive learning.
+A comprehensive repository containing multiple programming curricula including Python, Java, Go, Apache Kafka, and Git, designed to take you from complete beginner to advanced programmer through hands-on projects and progressive learning.
 
 ## 🎯 Available Curricula
 
@@ -62,6 +62,109 @@ A comprehensive repository containing multiple programming curricula including P
 - **Week 15**: Advanced Design Patterns
 - **Week 16**: Capstone Projects
 
+### 🦫 Go Programming Curriculum
+**Go Programming Course: Beginner to Expert**
+
+#### Learning Path Overview
+
+**Level 1: Foundations (Weeks 1-2)**
+- Basic Syntax & Types
+- Control Structures
+- Functions & Packages
+- Error Handling
+- Basic I/O Operations
+
+**Level 2: Intermediate (Weeks 3-4)**
+- Structs & Methods
+- Interfaces
+- Goroutines & Channels
+- Concurrency Patterns
+- Testing
+
+**Level 3: Advanced (Weeks 5-6)**
+- Memory Management
+- Performance Optimization
+- Advanced Concurrency
+- Reflection & Generics
+- Web Development
+
+**Level 4: Expert (Weeks 7-8)**
+- Microservices Architecture
+- Cloud Native Development
+- DevOps Integration
+- Advanced Patterns
+- Real-world Projects
+
+### 🦄 Apache Kafka Curriculum
+**Apache Kafka Course: From Beginner to Expert**
+
+#### Learning Path Overview
+
+**Level 1: Beginner**
+- Kafka fundamentals and architecture
+- Basic producer/consumer operations
+- Topic management and partitioning
+- Simple cluster setup
+
+**Level 2: Intermediate**
+- Advanced producer/consumer patterns
+- Stream processing with Kafka Streams
+- Schema management with Schema Registry
+- Monitoring and basic troubleshooting
+
+**Level 3: Advanced**
+- Performance tuning and optimization
+- Security implementation
+- Multi-datacenter deployments
+- Advanced monitoring and alerting
+
+**Level 4: Expert**
+- Large-scale architecture design
+- Advanced troubleshooting and debugging
+- Custom extensions and plugins
+- Real-world case studies
+
+### 🐙 Git Mastery Curriculum
+**Git Mastery: From Beginner to Expert**
+
+#### Learning Path Overview
+
+**Module 1: Git Fundamentals**
+- Understanding Version Control
+- Git Installation and Configuration
+- Basic Commands and Concepts
+- Your First Repository
+
+**Module 2: Core Git Operations**
+- Working with Commits
+- Branching Basics
+- Merging and Conflict Resolution
+- Remote Repositories
+
+**Module 3: Advanced Git Features**
+- Advanced Branching Strategies
+- Git Hooks and Automation
+- Stashing and Cherry-picking
+- Git Tags and Releases
+
+**Module 4: Collaboration and Workflows**
+- Team Collaboration Best Practices
+- Pull Requests and Code Reviews
+- Git Flow and GitHub Flow
+- Fork and Contribution Workflows
+
+**Module 5: Git Internals and Advanced Topics**
+- Git Object Model
+- Git References and Refspecs
+- Advanced Merging Strategies
+- Git Submodules and Subtrees
+
+**Module 6: Git Optimization and Troubleshooting**
+- Performance Optimization
+- Complex Problem Solving
+- Git Configuration Mastery
+- Custom Git Tools and Scripts
+
 ## 📚 Curriculum Structure
 
 ### Python Course Structure
@@ -118,6 +221,68 @@ java-course/
     ├── stock-trading-simulator/ # Real-time trading simulator
     ├── task-management-system/ # Task management with concurrency
     └── microservices-architecture/ # Microservices project
+```
+
+### Go Course Structure
+```
+go-course/
+├── level-1-foundations/
+│   ├── 01-hello-world/
+│   ├── 02-variables-types/
+│   ├── 03-control-structures/
+│   ├── 04-functions/
+│   ├── 05-packages/
+│   └── 06-error-handling/
+├── level-2-intermediate/
+│   ├── 01-structs-methods/
+│   ├── 02-interfaces/
+│   ├── 03-goroutines/
+│   ├── 04-channels/
+│   ├── 05-concurrency-patterns/
+│   └── 06-testing/
+├── level-3-advanced/
+│   ├── 01-memory-management/
+│   ├── 02-performance/
+│   ├── 03-advanced-concurrency/
+│   ├── 04-reflection/
+│   ├── 05-generics/
+│   └── 06-web-development/
+├── level-4-expert/
+│   ├── 01-microservices/
+│   ├── 02-cloud-native/
+│   ├── 03-devops/
+│   ├── 04-design-patterns/
+│   └── 05-capstone-project/
+└── resources/
+    ├── cheatsheets/
+    ├── best-practices/
+    └── references/
+```
+
+### Kafka Course Structure
+```
+kafka-course/
+├── level-1-beginner/
+├── level-2-intermediate/
+├── level-3-advanced/
+├── level-4-expert/
+├── hands-on-labs/
+├── resources/
+└── assessments/
+```
+
+### Git Course Structure
+```
+git-course/
+├── module-1-fundamentals/
+├── module-2-core-operations/
+├── module-3-advanced-features/
+├── module-4-collaboration-workflows/
+├── module-5-internals-advanced/
+├── module-6-optimization-troubleshooting/
+├── exercises/
+├── practice-projects/
+└── assessments/
 ```
 
 ## 🛠️ Prerequisites
@@ -245,5 +410,8 @@ Join our learning community to:
 **Ready to begin?**
 - **Python**: Start with [Level 1: Week 1 - Python Basics](./python-course/level1/week1/README.md)
 - **Java**: Start with [Level 1: Week 1 - Variables](./java-course/level-1-beginner/week-1-variables/README.md)
+- **Go**: Start with [Level 1: Hello World](./go-course/level-1-foundations/01-hello-world/README.md)
+- **Kafka**: Start with [Level 1: Kafka Beginner](./kafka-course/level-1-beginner/README.md)
+- **Git**: Start with [Module 1: Git Fundamentals](./git-course/module-1-fundamentals/README.md)
 
 Happy coding! 🚀
