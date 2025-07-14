@@ -1,30 +1,98 @@
 # Networking and Security
 
 ## Amazon VPC (Virtual Private Cloud)
-- Isolated section of AWS Cloud where you can launch resources.
-- Key concepts: subnets, route tables, internet gateways, NAT gateways.
+### Key Concepts
+- Isolated section of AWS Cloud for launching resources.
+- Components: subnets, route tables, internet gateways, NAT gateways, network ACLs.
 
-## Subnets
-- Divide your VPC into public and private subnets.
-- Public subnets: resources accessible from the internet.
-- Private subnets: internal resources, not directly accessible from the internet.
+### Example VPC Architecture (Text Diagram)
+```
+VPC
+├── Public Subnet (EC2, ELB)
+│   └── Internet Gateway
+└── Private Subnet (RDS, App Servers)
+    └── NAT Gateway
+```
 
-## Security Groups
-- Virtual firewalls for your instances.
-- Control inbound and outbound traffic.
+### Best Practices
+- Use multiple Availability Zones for high availability.
+- Restrict access with security groups and network ACLs.
+- Use private subnets for sensitive resources.
 
-## Route 53
-- AWS's scalable Domain Name System (DNS) web service.
-- Use for domain registration, DNS routing, and health checking.
-
-## CloudWatch
-- Monitoring and observability service.
-- Collects logs, metrics, and events.
-
-## CloudTrail
-- Tracks user activity and API usage.
-- Provides event history for your AWS account.
+### Example: Create a VPC (CLI)
+```sh
+aws ec2 create-vpc --cidr-block 10.0.0.0/16
+```
 
 ---
 
-**Next:** Databases and storage on AWS.
+## Subnets
+### Key Concepts
+- Public subnets: Direct access to the internet via Internet Gateway.
+- Private subnets: No direct internet access; use NAT Gateway for outbound traffic.
+
+### Example: Create a Subnet (CLI)
+```sh
+aws ec2 create-subnet --vpc-id vpc-12345678 --cidr-block 10.0.1.0/24
+```
+
+---
+
+## Security Groups
+### Key Concepts
+- Virtual firewalls for EC2 instances.
+- Control inbound and outbound traffic by rules.
+
+### Best Practices
+- Allow only necessary ports (e.g., 22 for SSH, 80/443 for web).
+- Use separate security groups for different tiers (web, app, db).
+
+### Example: Create a Security Group (CLI)
+```sh
+aws ec2 create-security-group --group-name my-sg --description "My security group" --vpc-id vpc-12345678
+```
+
+---
+
+## Route 53
+### Key Concepts
+- Managed DNS service.
+- Supports domain registration, DNS routing, health checks.
+
+### Example: Register a Domain (Console)
+- Go to Route 53 > Registered domains > Register domain.
+
+### Example: Create a Hosted Zone (CLI)
+```sh
+aws route53 create-hosted-zone --name example.com --caller-reference 1
+```
+
+---
+
+## CloudWatch
+### Key Concepts
+- Monitoring and observability service.
+- Collects logs, metrics, and events from AWS resources.
+
+### Example: View EC2 Metrics (Console)
+- Go to CloudWatch > Metrics > EC2.
+
+### Example: Put a Custom Metric (CLI)
+```sh
+aws cloudwatch put-metric-data --metric-name MyMetric --namespace MyApp --value 1
+```
+
+---
+
+## CloudTrail
+### Key Concepts
+- Tracks user activity and API usage.
+- Provides event history for your AWS account.
+
+### Example: Enable CloudTrail (Console)
+- Go to CloudTrail > Trails > Create trail.
+
+### Example: Lookup Events (CLI)
+```sh
+aws cloudtrail lookup-events --max-results 5
+```
