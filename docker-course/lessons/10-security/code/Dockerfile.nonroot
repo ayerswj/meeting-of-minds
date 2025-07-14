@@ -1,0 +1,6 @@
+FROM node:18
+WORKDIR /app
+COPY . .
+RUN useradd -m appuser
+USER appuser
+CMD ["node", "app.js"]
