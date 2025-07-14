@@ -1,78 +1,38 @@
 # SQL Course: Beginner to Master (PostgreSQL Focus)
 
-Welcome to the ultimate SQL course designed to take you from a complete beginner to a master, with a focus on PostgreSQL. This course is structured in progressive modules, each building on the previous, and includes practical exercises, real-world examples, and advanced topics.
+Welcome to the ultimate SQL course designed to take you from a complete beginner to a master, with a focus on PostgreSQL. The course is organized into the following directories:
+
+- `beginner/`: Foundational SQL and PostgreSQL concepts
+- `intermediate/`: More advanced querying, data modeling, and PostgreSQL features
+- `advanced/`: Master-level topics, performance, security, and advanced PostgreSQL
+- `projects/`: Extensive real-world projects to apply your knowledge
+
+Each section contains modules with explanations, practical examples, and exercises.
 
 ## Table of Contents
 
-1. **Introduction to Databases and SQL**
-   - What is a Database?
-   - Relational vs. Non-Relational Databases
-   - Introduction to SQL and PostgreSQL
+1. **Beginner**
+   - Introduction to Databases and SQL
+   - Setting Up PostgreSQL
+   - Basic SQL Queries
+   - Working with Tables
 
-2. **Setting Up PostgreSQL**
-   - Installing PostgreSQL
-   - Basic Configuration
-   - Using psql (PostgreSQL CLI)
+2. **Intermediate**
+   - Advanced Querying
+   - Data Modeling and Constraints
+   - Views, Functions, and Procedures
+   - Transactions and Concurrency
 
-3. **Basic SQL Queries**
-   - SELECT Statements
-   - Filtering Data (WHERE)
-   - Sorting Results (ORDER BY)
-   - Limiting Results (LIMIT, OFFSET)
+3. **Advanced**
+   - Advanced PostgreSQL Features
+   - Security and User Management
+   - Performance Tuning and Optimization
 
-4. **Working with Tables**
-   - Creating Tables
-   - Data Types in PostgreSQL
-   - Inserting Data (INSERT)
-   - Updating Data (UPDATE)
-   - Deleting Data (DELETE)
-
-5. **Advanced Querying**
-   - Aggregate Functions (COUNT, SUM, AVG, etc.)
-   - GROUP BY and HAVING
-   - Joins (INNER, LEFT, RIGHT, FULL)
-   - Subqueries and Nested SELECTs
-
-6. **Data Modeling and Constraints**
-   - Primary Keys and Foreign Keys
-   - Unique, Not Null, and Check Constraints
-   - Indexes and Performance
-
-7. **Views, Functions, and Procedures**
-   - Creating and Using Views
-   - User-Defined Functions
-   - Stored Procedures
-
-8. **Transactions and Concurrency**
-   - Transactions (BEGIN, COMMIT, ROLLBACK)
-   - Isolation Levels
-   - Locking and Deadlocks
-
-9. **Advanced PostgreSQL Features**
-   - JSON and Array Data Types
-   - Full-Text Search
-   - Extensions (e.g., PostGIS)
-   - Partitioning and Sharding
-
-10. **Security and User Management**
-    - Roles and Permissions
-    - Authentication Methods
-    - Backups and Restores
-
-11. **Performance Tuning and Optimization**
-    - Query Planning and EXPLAIN
-    - Index Optimization
-    - Vacuuming and Maintenance
-
-12. **Real-World Projects and Case Studies**
-    - Building a Blog Database
-    - E-commerce Data Modeling
-    - Analytics and Reporting
-
-13. **Resources and Next Steps**
-    - Further Reading
-    - Community and Support
-    - Certification Paths
+4. **Projects**
+   - Blog Database
+   - E-commerce Data Modeling
+   - Analytics and Reporting
+   - [More projects inside the `projects/` directory]
 
 ---
 
