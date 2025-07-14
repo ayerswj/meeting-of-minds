@@ -80,15 +80,152 @@ Welcome to the .NET Course! This curriculum is designed to take you from a compl
 ---
 
 ### 3. C# Fundamentals
-- Variables, Data Types, and Operators
-- Control Structures (if, switch, loops)
-- Methods and Parameters
-- Error Handling (try/catch)
+#### Lesson 1: Variables, Data Types, and Operators
+- **Description:** Learn about variables, primitive data types, and operators in C#.
+- **Key Points:**
+  - Declaring variables: `int age = 25;`
+  - Data types: int, double, string, bool, char, etc.
+  - Operators: +, -, *, /, %, ==, !=, >, <, &&, ||
+- **Example Code:**
+  ```csharp
+  int age = 30;
+  double price = 19.99;
+  string name = "Alice";
+  bool isActive = true;
+  Console.WriteLine($"Name: {name}, Age: {age}, Price: {price}, Active: {isActive}");
+  ```
+- **Exercise:**
+  - Declare variables for your name, age, and favorite number. Print them in a sentence.
+
+#### Lesson 2: Control Structures (if, switch, loops)
+- **Description:** Use conditional statements and loops to control program flow.
+- **Key Points:**
+  - if/else statements
+  - switch statements
+  - for, while, and do-while loops
+- **Example Code:**
+  ```csharp
+  int number = 5;
+  if (number > 0)
+      Console.WriteLine("Positive number");
+  else
+      Console.WriteLine("Non-positive number");
+
+  for (int i = 0; i < 3; i++)
+      Console.WriteLine(i);
+  ```
+- **Exercise:**
+  - Write a program that prints numbers 1 to 10 using a loop.
+  - Write a program that checks if a number is even or odd.
+
+#### Lesson 3: Methods and Parameters
+- **Description:** Learn how to write reusable code with methods.
+- **Key Points:**
+  - Defining and calling methods
+  - Method parameters and return values
+- **Example Code:**
+  ```csharp
+  static int Add(int a, int b)
+  {
+      return a + b;
+  }
+  // Usage:
+  int sum = Add(3, 4);
+  Console.WriteLine(sum);
+  ```
+- **Exercise:**
+  - Write a method that takes two numbers and returns their product.
+  - Write a method that prints your name.
+
+#### Lesson 4: Error Handling (try/catch)
+- **Description:** Handle errors gracefully using try/catch blocks.
+- **Key Points:**
+  - try, catch, finally
+  - Exception types
+- **Example Code:**
+  ```csharp
+  try
+  {
+      int x = int.Parse("abc");
+  }
+  catch (FormatException ex)
+  {
+      Console.WriteLine($"Error: {ex.Message}");
+  }
+  ```
+- **Exercise:**
+  - Write a program that asks the user for a number and handles invalid input using try/catch.
+
+---
 
 ### 4. Object-Oriented Programming in C#
-- Classes and Objects
-- Inheritance, Polymorphism, Encapsulation, Abstraction
-- Interfaces and Abstract Classes
+#### Lesson 1: Classes and Objects
+- **Description:** Understand how to define and use classes and objects.
+- **Key Points:**
+  - Class definition, fields, properties, methods
+  - Creating objects (instances)
+- **Example Code:**
+  ```csharp
+  class Person
+  {
+      public string Name { get; set; }
+      public int Age { get; set; }
+  }
+  // Usage:
+  Person p = new Person { Name = "Bob", Age = 28 };
+  Console.WriteLine($"{p.Name} is {p.Age} years old.");
+  ```
+- **Exercise:**
+  - Define a class `Car` with properties for make, model, and year. Create an object and print its details.
+
+#### Lesson 2: Inheritance, Polymorphism, Encapsulation, Abstraction
+- **Description:** Learn the four pillars of OOP in C#.
+- **Key Points:**
+  - Inheritance: `class Dog : Animal {}`
+  - Polymorphism: method overriding, virtual/override
+  - Encapsulation: private fields, public properties
+  - Abstraction: abstract classes and methods
+- **Example Code:**
+  ```csharp
+  abstract class Animal
+  {
+      public abstract void Speak();
+  }
+  class Dog : Animal
+  {
+      public override void Speak() => Console.WriteLine("Woof!");
+  }
+  // Usage:
+  Animal myDog = new Dog();
+  myDog.Speak();
+  ```
+- **Exercise:**
+  - Create a base class `Shape` and derived classes `Circle` and `Square`. Implement a method to calculate area for each.
+
+#### Lesson 3: Interfaces and Abstract Classes
+- **Description:** Use interfaces and abstract classes to define contracts and shared behavior.
+- **Key Points:**
+  - Interface definition: `interface IDrive { void Drive(); }`
+  - Implementing interfaces
+  - Abstract classes vs interfaces
+- **Example Code:**
+  ```csharp
+  interface IDrive
+  {
+      void Drive();
+  }
+  class Car : IDrive
+  {
+      public void Drive() => Console.WriteLine("Driving...");
+  }
+  // Usage:
+  IDrive myCar = new Car();
+  myCar.Drive();
+  ```
+- **Exercise:**
+  - Define an interface `IFlyable` with a method `Fly()`. Implement it in a class `Bird`.
+
+---
 
 ### 5. Working with Collections and LINQ
 - Arrays, Lists, Dictionaries
